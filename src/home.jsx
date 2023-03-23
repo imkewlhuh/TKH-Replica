@@ -336,8 +336,8 @@ export default function Home() {
                 display: "flex", alignItems: "center", justifyContent: "center",
                 fontFamily: "sans-serif", fontSize: "13px", letterSpacing: "0.5px"
             }}>
-                <a style={{ textDecoration: "none", color: "white", marginRight: "2em" }} href="https://www.theknowledgehouse.org/terms_of_use/">TERMS OF USE</a>
-                <a style={{ textDecoration: "none", color: "white", marginRight: "1em" }} href="https://www.theknowledgehouse.org/privacy_policy/">PRIVACY POLICY</a>
+                <a className="footerLinks" style={{marginRight: "2em"}} href="https://www.theknowledgehouse.org/terms_of_use/">TERMS OF USE</a>
+                <a className="footerLinks" style={{marginRight: "1em"}} href="https://www.theknowledgehouse.org/privacy_policy/">PRIVACY POLICY</a>
                 <p>© 2022 The Knowledge House</p>
             </Box>
         </div>
