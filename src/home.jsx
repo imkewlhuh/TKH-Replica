@@ -62,7 +62,7 @@ export default function Home() {
                 height: "14vh", padding: "2em 0em 1.5em 0em", display: "flex",
                 alignItems: "center", justifyContent: "space-around", gap: "3em"
             }} >
-                <img className="headerTitle" src="/images/title.png" />
+                <a href="/"><img className="headerTitle" src="/images/title.png" /></a>
                 <Box sx={{ display: "flex", alignItems: "center" }} >
                     <div className="navLinks">
                         <Tooltip placement="bottom-start" TransitionProps={{ style: { transitionDuration: 400 } }} title={<TooltipLinks links={aboutLinks} />} ><a href="https://www.theknowledgehouse.org/our_story/">About</a></Tooltip>
@@ -92,7 +92,7 @@ export default function Home() {
                 position: "fixed", top: "0", left: "0", bgcolor: "#291B4B",
                 width: "100%", zIndex: show ? "2" : "-1", opacity: show ? "1" : "0", transition: "opacity 0.5s",
             }} >
-                <img className="headerTitle" src="/images/title.png" />
+                <a href="/"><img className="headerTitle" src="/images/title.png" /></a>
                 <Box sx={{ display: show ? "flex" : "none", alignItems: "center" }} >
                     <div className="navLinks">
                         <Tooltip placement="bottom-start" TransitionProps={{ style: { transitionDuration: 400 } }} title={<TooltipLinks links={aboutLinks} />}  >
