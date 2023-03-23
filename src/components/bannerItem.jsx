@@ -9,7 +9,7 @@ export const bannerItems = [
 export default function BannerItem(props) {
     return (
         <Box sx={{
-            display: "flex", alignItems: "flex-start", 
+            display: "flex", alignItems: "flex-start", flexWrap: {md: "wrap", lg: "nowrap"},
             lineHeight: "1.5", gap: "1em", paddingX: "1em"
             }}>
             <img style={{height: "89px"}} src={props.img} />

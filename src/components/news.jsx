@@ -1,6 +1,6 @@
-import { Box, Container } from "@mui/material";
+import { Box } from "@mui/material";
 
-export const news1 = [
+export const news = [
     {
         img: "/images/npt.jpg",
         title: "New Profit invests in six social entrepreneurs expanding opportunities in America",
@@ -15,10 +15,7 @@ export const news1 = [
         img: "/images/bk12.png",
         title: "Local organization offers fellowship for Black and brown students entering tech industry",
         link: "https://brooklyn.news12.com/local-organization-offers-fellowship-for-black-and-brown-students-entering-tech-industry"
-    }
-];
-
-export const news2 = [
+    },
     {
         img: "/images/yahoo.jpg",
         title: "The Great Restoration: TKH Launches its 2022- 23 Fellowship Campaign to Increase Tech Workforce Nationwide.",

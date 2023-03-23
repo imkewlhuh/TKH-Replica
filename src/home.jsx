@@ -7,33 +7,38 @@ import BannerItem, { bannerItems } from "./components/bannerItem.jsx";
 import TooltipLinks from "./components/tooltips.jsx";
 import Testimonial, { testimonials } from "./components/testimonial.jsx";
 import { aboutLinks, volunteerLinks, programsLinks } from "./components/tooltips.jsx";
-import NewsTiles, { news1, news2 } from "./components/news.jsx";
+import NewsTiles, { news } from "./components/news.jsx";
 import { TKH, About, Volunteer, Programs, Contact } from "./components/footer.jsx";
 import { useState, useEffect } from "react";
+import Aos from "aos";
+import 'aos/dist/aos.css';
+
+Aos.init();
 
 export default function Home() {
     const [show, setShow] = useState(false);
+    const [scroll, setScroll] = useState(0);
 
     useEffect(() => {
         function showNav(e) {
-            console.log(e);
-            let scroll = e.target.defaultView.pageYOffset;
-            if (scroll > 100) {
+            let height = e.target.defaultView.pageYOffset;
+            if (height > 100) {
                 setShow(true);
+                setScroll(height);
             } else {
                 setShow(false);
-            }
-        }
+                setScroll(height);
+            };
+        };
 
         window.addEventListener('scroll', showNav);
 
         return () => {
             window.removeEventListener('scroll', showNav)
-        }
+        };
     }, []);
 
     function handleHover(e) {
-        console.log(e);
         let x = e.pageX - e.target.offsetLeft;
         let y = e.pageY - e.target.offsetTop;
 
@@ -42,7 +47,6 @@ export default function Home() {
     }
 
     function handleStickyHover(e) {
-        console.log(e);
         let x = e.clientX - e.target.offsetLeft;
         let y = e.clientY - e.target.offsetTop;
 
@@ -142,8 +146,8 @@ export default function Home() {
             {/* hero */}
             <div className="hero">
                 <Box textAlign={"center"}>
-                    <h1>Opportunities</h1>
-                    <h1>For All</h1>
+                    <h1 style={{ transform: `translateX(-${scroll < 500 ? scroll : 450}px)`, transition: "transform 0.1s linear" }}>Opportunities</h1>
+                    <h1 style={{ transform: `translateX(${scroll < 500 ? scroll : 450}px)`, transition: "transform 0.1s linear" }}>For All</h1>
                 </Box>
                 <Button sx={{
                     bgcolor: "#FFC20A", color: "#332459", fontWeight: "bold",
@@ -161,7 +165,7 @@ export default function Home() {
 
             {/* banner */}
             <Container sx={{ width: "85%" }}>
-                <Grid padding={"3em 4em"} container>
+                <Grid data-aos="fade" data-aos-duration="1000" padding={"3em 4em"} container>
                     {
                         bannerItems.map((item, i) => {
                             return (
@@ -176,18 +180,18 @@ export default function Home() {
 
             {/* Our Mission */}
             <Box sx={{ bgcolor: "white", height: "70vh", display: "flex", justifyContent: "center", fontFamily: "sans-serif", textAlign: "center" }} >
-                <Box sx={{
+                <Box data-aos="fade" data-aos-duration="700" sx={{
                     bgcolor: "#FFC20A", width: "75%", display: "flex",
-                    flexDirection: "column", alignItems: "center", justifyContent: "space-evenly",
-                    padding: "3em", height: "110%", zIndex: "1", gap: "2em"
+                    flexDirection: "column", alignItems: "center", justifyContent: "space-around",
+                    padding: "3em", height: "115%", zIndex: "1", gap: "2em"
                 }}>
-                    <Container sx={{
+                    <Container data-aos="fade" data-aos-duration="1000" sx={{
                         bgcolor: "#332459", color: "white", padding: "0.5rem",
                         fontSize: "18px", width: "30%"
                     }}>
                         <h1>Our <span style={{ color: "#FFC20A" }}>Mission</span></h1>
                     </Container>
-                    <Container sx={{
+                    <Container data-aos="fade" data-aos-duration="1000" sx={{
                         bgcolor: "#332459", color: "white", padding: "1em",
                         fontSize: "18px", lineHeight: "1.5"
                     }}>
@@ -231,51 +235,53 @@ export default function Home() {
                 fontFamily: "sans-serif", display: "flex", alignItems: "center",
                 justifyContent: "center", paddingBottom: "3em"
             }}>
-                <Carousel speed={1100} adaptiveHeight renderCenterLeftControls={{}} renderCenterRightControls={{}} renderBottomCenterControls={({ previousSlide, currentSlide, nextSlide }) => {
-                    return (
-                        <Box sx={{ wordSpacing: "0.5em", textAlign: "center", transform: `translate(-4em, 5em)` }}>
-                            <p><Button onClick={previousSlide} sx={{
-                                textTransform: "none", color: "white",
-                                '&:hover': { bgcolor: "inherit", color: "lightgray" }
-                            }}>BACK</Button> {currentSlide + 1}/2 <Button onClick={nextSlide} sx={{
-                                textTransform: "none", color: "white",
-                                '&:hover': { bgcolor: "inherit", color: "lightgray" }
-                            }}>NEXT</Button></p>
-                        </Box>
-                    )
-                }}>
-                    <Container sx={{ display: "flex", alignItems: "center", justifyContent: "space-evenly" }}>
-                        <Testimonial {...testimonials[0]} />
-                    </Container>
-                    <Container sx={{ display: "flex", alignItems: "center", justifyContent: "space-evenly" }}>
-                        <Testimonial {...testimonials[1]} />
-                    </Container>
-                </Carousel>
+                <div data-aos="fade" data-aos-duration="1000">
+                    <Carousel speed={1100} adaptiveHeight renderCenterLeftControls={{}} renderCenterRightControls={{}} renderBottomCenterControls={({ previousSlide, currentSlide, nextSlide }) => {
+                        return (
+                            <Box sx={{ wordSpacing: "0.5em", textAlign: "center", transform: `translate(-4em, 5em)` }}>
+                                <p><Button onClick={previousSlide} sx={{
+                                    textTransform: "none", color: "white",
+                                    '&:hover': { bgcolor: "inherit", color: "lightgray" }
+                                }}>BACK</Button> {currentSlide + 1}/2 <Button onClick={nextSlide} sx={{
+                                    textTransform: "none", color: "white",
+                                    '&:hover': { bgcolor: "inherit", color: "lightgray" }
+                                }}>NEXT</Button></p>
+                            </Box>
+                        )
+                    }}>
+                        <Container sx={{ display: "flex", alignItems: "center", justifyContent: "space-evenly" }}>
+                            <Testimonial {...testimonials[0]} />
+                        </Container>
+                        <Container sx={{ display: "flex", alignItems: "center", justifyContent: "space-evenly" }}>
+                            <Testimonial {...testimonials[1]} />
+                        </Container>
+                    </Carousel>
+                </div>
             </Box>
 
             {/* Recent News */}
             <Box sx={{
-                bgcolor: "white", height: "133vh", fontFamily: "sans-serif",
+                bgcolor: "white", minHeight: "133vh", fontFamily: "sans-serif",
                 textAlign: "center", fontSize: "18px", display: "flex",
                 flexDirection: "column", alignItems: "center", justifyContent: "center",
-                gap: "0.5em"
+                gap: "0.5em", padding: "2em"
             }}>
                 <h1 style={{ fontWeight: "bold" }}><span style={{ color: "#584FA1" }}>Recent</span> News</h1>
                 <p>Check out The Knowledge House in the news</p>
                 <br />
                 <Box sx={{
-                    width: "60%", display: "flex", gap: "2px",
-                    marginBottom: "1em", 
+                    width: "80%", display: "flex", rowGap: "2em",
+                    flexWrap: "wrap", columnGap: "2px",
                 }}>
-                    {news1.map((news, i) => {
+                    {news.map((news, i) => {
                         return (
-                            <a style={{ flex: "1 1 0px", textDecoration: "none", color: "white" }} href={news.link} key={i}>
+                            <a style={{ flex: "1 1 30%", textDecoration: "none", color: "white" }} href={news.link} key={i}>
                                 <NewsTiles {...news} />
                             </a>
                         )
                     })}
                 </Box>
-                <Box sx={{
+                {/* <Box sx={{
                     width: "60%", display: "flex", gap: "2px",
                 }}>
                     {news2.map((news, i) => {
@@ -285,7 +291,7 @@ export default function Home() {
                             </a>
                         )
                     })}
-                </Box>
+                </Box> */}
             </Box>
 
             {/* Invest in a Fellow */}
