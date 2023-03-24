@@ -160,7 +160,7 @@ export default function Home() {
                         width: 0, height: 0, bgcolor: "#332459", transition: "width 0.7s, height 0.7s"
                     },
                     '&:hover::before': { width: "700px", height: "700px" }
-                }} onMouseMove={handleHover} variant="contained" disableElevation href="https://www.theknowledgehouse.org/donate/"><p style={{ position: "relative", zIndex: 1 }}>Donate Now</p></Button>
+                }} onMouseMove={handleHover} variant="contained" disableElevation href="https://www.classy.org/give/420187/#!/donation/checkout"><p style={{ position: "relative", zIndex: 1 }}>Donate Now</p></Button>
             </div>
 
             {/* banner */}
@@ -281,17 +281,6 @@ export default function Home() {
                         )
                     })}
                 </Box>
-                {/* <Box sx={{
-                    width: "60%", display: "flex", gap: "2px",
-                }}>
-                    {news2.map((news, i) => {
-                        return (
-                            <a style={{ flex: "1 1 0px", textDecoration: "none", color: "white" }} href={news.link} key={i}>
-                                <NewsTiles {...news} />
-                            </a>
-                        )
-                    })}
-                </Box> */}
             </Box>
 
             {/* Invest in a Fellow */}
@@ -313,7 +302,7 @@ export default function Home() {
                         width: 0, height: 0, bgcolor: "white", transition: "width 0.7s, height 0.7s"
                     },
                     '&:hover::before': { width: "700px", height: "700px" }
-                }} onMouseMove={handleHover} variant="contained" disableElevation href="https://www.theknowledgehouse.org/donate/"><p style={{ position: "relative", zIndex: 1 }}>INVEST IN A FELLOW</p></Button>
+                }} onMouseMove={handleHover} variant="contained" disableElevation href="https://www.classy.org/give/420187/#!/donation/checkout"><p style={{ position: "relative", zIndex: 1 }}>INVEST IN A FELLOW</p></Button>
             </Box>
 
             {/* Footer */}
