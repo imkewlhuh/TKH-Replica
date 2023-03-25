@@ -231,7 +231,7 @@ export default function Home() {
             {/* Our Mission */}
             <Box sx={{ bgcolor: "white", display: "flex", justifyContent: "center", fontFamily: "sans-serif", textAlign: "center" }} >
                 <Box data-aos="fade" data-aos-duration="700" sx={{
-                    bgcolor: "#FFC20A", width: "75%", display: "flex",
+                    bgcolor: "#FFC20A", width: {xs: "100%", md: "80%"}, display: "flex",
                     flexDirection: "column", alignItems: "center", justifyContent: "space-around",
                     padding: "3em", gap: "2em"
                 }}>
