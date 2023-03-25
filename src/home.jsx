@@ -16,8 +16,8 @@ import 'aos/dist/aos.css';
 Aos.init();
 
 const closedNav = {
-    height: "10vh", padding: "2em 0em 1.5em 0em", display: { xs: "flex", lg: "none" },
-    alignItems: "center", justifyContent: "space-around", position: "absolute",
+    height: "10vh", padding: "2em 0em 1.5em 1em", display: { xs: "flex", lg: "none" },
+    alignItems: "center", justifyContent: "flex-start", position: "absolute",
     top: "0", left: "0", width: "100%",
 };
 
@@ -174,8 +174,8 @@ export default function Home() {
 
             {/* Mobile Scroll Header */}
             <Box sx={navShow ? {...openNav} : {
-                height: "10vh", padding: "2em 0em 1.5em 0em", display: { xs: "flex", lg: "none" },
-                alignItems: "center", justifyContent: "space-around", position: "fixed",
+                height: "10vh", padding: "2em 0em 1.5em 1em", display: { xs: "flex", lg: "none" },
+                alignItems: "center", justifyContent: "flex-start", position: "fixed",
                 width: "100%", bgcolor: "#291B4B", zIndex: show ? "2" : "-1", opacity: show ? "1" : "0", transition: "opacity 0.5s",
 
             }} >
