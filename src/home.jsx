@@ -15,9 +15,22 @@ import 'aos/dist/aos.css';
 
 Aos.init();
 
+const closedNav = {
+    height: "10vh", padding: "2em 0em 1.5em 0em", display: { xs: "flex", lg: "none" },
+    alignItems: "center", justifyContent: "space-around", position: "absolute",
+    top: "0", left: "0", width: "100%",
+};
+
+const openNav = {
+    bgcolor: "white", display: "flex", flexDirection: "column",
+    position: "absolute", top: "0", left: "0",
+    width: "100vw", height: "100dvh", zIndex: "5"
+};
+
 export default function Home() {
     const [show, setShow] = useState(false);
     const [scroll, setScroll] = useState(0);
+    const [navShow, setNavShow] = useState(false);
 
     useEffect(() => {
         function showNav(e) {
@@ -59,7 +72,7 @@ export default function Home() {
 
             {/* header */}
             <Box sx={{
-                height: "14vh", padding: "2em 0em 1.5em 0em", display: "flex",
+                height: "14vh", padding: "2em 0em 1.5em 0em", display: { xs: "none", lg: "flex" },
                 alignItems: "center", justifyContent: "space-around", gap: "3em"
             }} >
                 <a href="/"><img className="headerTitle" src="/images/title.png" /></a>
@@ -85,9 +98,10 @@ export default function Home() {
                 </Box>
             </Box>
 
+
             {/* Scroll Header */}
             <Box sx={{
-                height: "15vh", padding: "2em 0em 2em 0em", display: "flex",
+                height: "15vh", padding: "2em 0em 2em 0em", display: { xs: "none", lg: "flex" },
                 alignItems: "center", justifyContent: "space-around", gap: "3em",
                 position: "fixed", top: "0", left: "0", bgcolor: "#291B4B",
                 width: "100%", zIndex: show ? "2" : "-1", opacity: show ? "1" : "0", transition: "opacity 0.5s",
@@ -129,9 +143,10 @@ export default function Home() {
                 </Box>
             </Box>
 
+
             {/* sub-header */}
             <Box sx={{
-                bgcolor: "#FFB570", color: "#332459", display: "flex",
+                bgcolor: "#FFB570", color: "#332459", display: { xs: "none", lg: "flex" },
                 alignItems: "center", justifyContent: "center", padding: "0.4em 0em 0.4em 3em",
                 fontSize: "20px"
             }} >
@@ -143,9 +158,42 @@ export default function Home() {
                 }} variant="contained" disableElevation href="http://eepurl.com/dq4bnb" >Subscribe to our Newsletter</Button>
             </Box>
 
+
+            {/* Mobile Header */}
+            <Box sx={navShow ? {...openNav} : {...closedNav}} >
+                <a href="/"><img className="headerTitle" src="/images/title.png" /></a>
+                <Box sx={{
+                    display: "flex", flexDirection: "column", alignItems: "flex-end",
+                    gap: "0.5em", zIndex: "10", position: "absolute", top: "2em", right: "1.5em"
+                }} onClick={() => setNavShow(!navShow)} >
+                    <Box sx={{bgcolor: navShow ? "black" : "white", height: "2px", width: "2em"}} ></Box>
+                    <Box sx={{bgcolor: navShow ? "black" : "white", height: "2px", width: "1em"}} ></Box>
+                </Box>
+            </Box>
+
+
+            {/* Mobile Scroll Header */}
+            <Box sx={navShow ? {...openNav} : {
+                height: "10vh", padding: "2em 0em 1.5em 0em", display: { xs: "flex", lg: "none" },
+                alignItems: "center", justifyContent: "space-around", position: "fixed",
+                width: "100%", bgcolor: "#291B4B", zIndex: show ? "2" : "-1", opacity: show ? "1" : "0", transition: "opacity 0.5s",
+
+            }} >
+
+                <a href="/"><img className="headerTitle" src="/images/title.png" /></a>
+                <Box sx={{
+                    display: "flex", flexDirection: "column", alignItems: "flex-end",
+                    gap: "0.5em", zIndex: "10", position: "absolute", top: "2em", right: "1.5em"
+                }} onClick={() => setNavShow(!navShow)} >
+                    <Box sx={{bgcolor: navShow ? "black" : "white", height: "2px", width: "2em"}} ></Box>
+                    <Box sx={{bgcolor: navShow ? "black" : "white", height: "2px", width: "1em"}} ></Box>
+                </Box>
+            </Box>
+
+
             {/* hero */}
             <div className="hero">
-                <Box textAlign={"center"}>
+                <Box sx={{ overflowX: "hidden", width: "100%" }} textAlign={"center"}>
                     <h1 style={{ transform: `translateX(-${scroll < 500 ? scroll : 450}px)`, transition: "transform 0.1s linear" }}>Opportunities</h1>
                     <h1 style={{ transform: `translateX(${scroll < 500 ? scroll : 450}px)`, transition: "transform 0.1s linear" }}>For All</h1>
                 </Box>
@@ -163,6 +211,7 @@ export default function Home() {
                 }} onMouseMove={handleHover} variant="contained" disableElevation href="https://www.classy.org/give/420187/#!/donation/checkout"><p style={{ position: "relative", zIndex: 1 }}>Donate Now</p></Button>
             </div>
 
+
             {/* banner */}
             <Container sx={{ width: "85%" }}>
                 <Grid data-aos="fade" data-aos-duration="1000" padding={"3em 4em"} container>
@@ -178,22 +227,23 @@ export default function Home() {
                 </Grid>
             </Container>
 
+
             {/* Our Mission */}
-            <Box sx={{ bgcolor: "white", height: "70vh", display: "flex", justifyContent: "center", fontFamily: "sans-serif", textAlign: "center" }} >
+            <Box sx={{ bgcolor: "white", display: "flex", justifyContent: "center", fontFamily: "sans-serif", textAlign: "center" }} >
                 <Box data-aos="fade" data-aos-duration="700" sx={{
                     bgcolor: "#FFC20A", width: "75%", display: "flex",
                     flexDirection: "column", alignItems: "center", justifyContent: "space-around",
-                    padding: "3em", height: "115%", zIndex: "1", gap: "2em"
+                    padding: "3em", gap: "2em"
                 }}>
                     <Container data-aos="fade" data-aos-duration="1000" sx={{
                         bgcolor: "#332459", color: "white", padding: "0.5rem",
-                        fontSize: "18px", width: "30%"
+                        width: { xs: "100%", md: "30%" }
                     }}>
                         <h1>Our <span style={{ color: "#FFC20A" }}>Mission</span></h1>
                     </Container>
                     <Container data-aos="fade" data-aos-duration="1000" sx={{
                         bgcolor: "#332459", color: "white", padding: "1em",
-                        fontSize: "18px", lineHeight: "1.5"
+                        lineHeight: "1.5"
                     }}>
                         <p>The Knowledge House empowers and sustains a talent pipeline of technologists, entrepreneurs, and digital leaders, who will uplift their communities out of poverty.</p>
                         <br />
@@ -204,12 +254,13 @@ export default function Home() {
                 </Box>
             </Box>
 
+
             {/* The Great Restoration */}
             <div className="restoration">
-                <Box sx={{ width: "39.5%" }}>
-                    <iframe style={{ width: "100%", aspectRatio: "16/9", border: "0px" }} allowFullScreen src="https://www.youtube.com/embed/W8lLg1u6HIo" />
+                <Box sx={{ flex: "1 1 30%" }}>
+                    <iframe className="video" allowFullScreen src="https://www.youtube.com/embed/W8lLg1u6HIo" />
                 </Box>
-                <Box sx={{ color: "white", width: "39.9%", lineHeight: "1.5", fontSize: "18px" }}>
+                <Box sx={{ color: "white", flex: "1 1 30%", lineHeight: "1.5", fontSize: "18px" }}>
                     <h1><span style={{ color: "#FFB570" }}>THE GREAT</span> RESTORATION</h1>
                     <p>Supporting a Talent-Driven Workforce</p>
                     <br />
@@ -229,13 +280,14 @@ export default function Home() {
                 </Box>
             </div>
 
+
             {/* Student Testimonials */}
             <Box sx={{
-                bgcolor: "#291B4B", color: "white", height: "110vh",
+                bgcolor: "#291B4B", color: "white", minHeight: "110vh",
                 fontFamily: "sans-serif", display: "flex", alignItems: "center",
-                justifyContent: "center", paddingBottom: "3em"
+                justifyContent: "center", padding: "10em"
             }}>
-                <div data-aos="fade" data-aos-duration="1000">
+                <div className="carousel" data-aos="fade" data-aos-duration="1000">
                     <Carousel speed={1100} adaptiveHeight renderCenterLeftControls={{}} renderCenterRightControls={{}} renderBottomCenterControls={({ previousSlide, currentSlide, nextSlide }) => {
                         return (
                             <Box sx={{ wordSpacing: "0.5em", textAlign: "center", transform: `translate(-4em, 5em)` }}>
@@ -249,15 +301,16 @@ export default function Home() {
                             </Box>
                         )
                     }}>
-                        <Container sx={{ display: "flex", alignItems: "center", justifyContent: "space-evenly" }}>
+                        <Container sx={{ display: "flex", alignItems: "center", justifyContent: "space-evenly", flexDirection: { xs: "column", md: "row" }, gap: { xs: "2em", lg: "0em" } }}>
                             <Testimonial {...testimonials[0]} />
                         </Container>
-                        <Container sx={{ display: "flex", alignItems: "center", justifyContent: "space-evenly" }}>
+                        <Container sx={{ display: "flex", alignItems: "center", justifyContent: "space-evenly", flexDirection: { xs: "column", md: "row" }, gap: { xs: "2em", lg: "0em" } }}>
                             <Testimonial {...testimonials[1]} />
                         </Container>
                     </Carousel>
                 </div>
             </Box>
+
 
             {/* Recent News */}
             <Box sx={{
@@ -283,12 +336,13 @@ export default function Home() {
                 </Box>
             </Box>
 
+
             {/* Invest in a Fellow */}
             <Box sx={{
-                height: "60vh", display: "flex", alignItems: "center",
-                justifyContent: "center", paddingTop: "1em", gap: "3em",
-                bgcolor: "#FFC20A", color: "#291B4B", fontSize: "42px",
-                paddingX: "1em", paddingBottom: "1em"
+                display: "flex", alignItems: "center",
+                justifyContent: "center", gap: "3em",
+                bgcolor: "#FFC20A", color: "#291B4B", fontSize: { xs: "25px", sm: "42px" },
+                padding: "2em", flexDirection: { xs: "column", md: "row" }
             }}>
                 <p style={{ width: "60%" }}>You can make an aspiring technologist's dreams come true. Invest in a fellow through one of our new monthly giving clubs today!</p>
                 <Button sx={{
@@ -305,13 +359,18 @@ export default function Home() {
                 }} onMouseMove={handleHover} variant="contained" disableElevation href="https://www.classy.org/give/420187/#!/donation/checkout"><p style={{ position: "relative", zIndex: 1 }}>INVEST IN A FELLOW</p></Button>
             </Box>
 
+
             {/* Footer */}
             <Box sx={{
-                height: "90vh", display: "flex", alignItems: "center",
-                gap: "2em", paddingX: "7em", justifyContent: "center"
+                display: "flex", alignItems: "center",
+                gap: "4em", padding: "7em", justifyContent: "center",
+                flexDirection: { xs: "column", lg: "row" }
             }}>
                 <TKH />
-                <Box sx={{ display: "flex", alignItems: "baseline", gap: "1em" }}>
+                <Box sx={{
+                    display: "flex", alignItems: { xs: "center", md: "baseline" }, gap: "1em",
+                    flexDirection: { xs: "column", md: "row" }
+                }}>
                     <About />
                     <Volunteer />
                     <Programs />
@@ -319,16 +378,18 @@ export default function Home() {
                 </Box>
             </Box>
 
+
             {/* Sub-Footer */}
             <Box sx={{
                 height: "9vh", bgcolor: "#231740", color: "white",
                 display: "flex", alignItems: "center", justifyContent: "center",
-                fontFamily: "sans-serif", fontSize: "13px", letterSpacing: "0.5px"
+                fontFamily: "sans-serif", fontSize: { xs: "8px", sm: "13px" }, letterSpacing: "0.5px"
             }}>
-                <a className="footerLinks" style={{marginRight: "2em"}} href="https://www.theknowledgehouse.org/terms_of_use/">TERMS OF USE</a>
-                <a className="footerLinks" style={{marginRight: "1em"}} href="https://www.theknowledgehouse.org/privacy_policy/">PRIVACY POLICY</a>
+                <a className="footerLinks" style={{ marginRight: "2em" }} href="https://www.theknowledgehouse.org/terms_of_use/">TERMS OF USE</a>
+                <a className="footerLinks" style={{ marginRight: "1em" }} href="https://www.theknowledgehouse.org/privacy_policy/">PRIVACY POLICY</a>
                 <p>© 2022 The Knowledge House</p>
             </Box>
+
         </div>
     )
-}
+};

@@ -18,8 +18,8 @@ export const testimonials = [
 export default function Testimonial(props) {
     return (
         <>
-            <Avatar sx={{height: "30vh", width: "fit-content"}} alt={props.name} src={props.img} />
-            <Box sx={{width: "38%", fontSize: "18px"}}>
+            <Avatar sx={{height: {xs: "8em", sm: "12em", md: "30vh"}, width: "fit-content"}} alt={props.name} src={props.img} />
+            <Box sx={{width: {xs: "90%", md: "38%"}, fontSize: "18px"}}>
                 <h1><span style={{ color: "#FFC20A" }}>WHAT OUR</span> STUDENTS HAVE TO SAY</h1>
                 <br />
                 <br />

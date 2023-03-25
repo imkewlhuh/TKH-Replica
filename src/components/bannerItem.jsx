@@ -9,12 +9,13 @@ export const bannerItems = [
 export default function BannerItem(props) {
     return (
         <Box sx={{
-            display: "flex", alignItems: "flex-start", flexWrap: {md: "wrap", lg: "nowrap"},
-            lineHeight: "1.5", gap: "1em", paddingX: "1em"
+            display: "flex", alignItems: {xs: "center", lg:"flex-start"}, flexDirection: {xs: "column", lg: "row"},
+            lineHeight: "1.5", gap: "1em", padding: "1em", textAlign: {xs: "center", lg: "left"}, flexWrap: {xs: "wrap", lg: "nowrap"}
             }}>
-            <img style={{height: "89px"}} src={props.img} />
+            <img className="bannerImg" src={props.img} />
             <Box sx={{
-                display: "flex", flexDirection: "column", fontFamily: "sans-serif"
+                display: "flex", flexDirection: "column", fontFamily: "sans-serif",
+                width: {xs: "100%", md: "50%"}
                 }}>
                 <h3 style={{color: "#FFC20A", fontSize: "20px"}}>{props.title}</h3>
                 <p style={{color: "white"}}>{props.desc}</p>

@@ -23,11 +23,10 @@ html::-webkit-scrollbar-track {
 
 body {
   background-color: #332459;
-  overflow-x: hidden;
 }
 
 .headerTitle {
-  height: 25px;
+  max-height: 25px;
 }
 
 .navLinks {
@@ -90,6 +89,11 @@ body {
   font-family: sans-serif;
 }
 
+.bannerImg {
+  height: fit-content;
+  width: fit-content;
+}
+
 .restoration {
   height: 130vh;
   display: flex;
@@ -98,7 +102,7 @@ body {
   gap: 2em;
   font-family: sans-serif;
   position: relative;
-  padding-top: 3em;
+  padding: 5em;
 }
 
 .restoration::before {
@@ -115,6 +119,16 @@ body {
   opacity: 0.45;
 }
 
+.video {
+  border: 0px;
+  width: 80%;
+  aspect-ratio: 16/9;
+}
+
+.carousel {
+  width: 100vw;
+}
+
 .footerLinks {
   text-decoration: none;
   color: white;
@@ -123,4 +137,33 @@ body {
 
 .footerLinks:hover {
   color: #FFC20A;
+}
+
+@media all and (max-width: 1100px) {
+  .restoration {
+    flex-direction: column;
+    height: auto;
+  }
+  
+  .video {
+    width: 120%;
+  }
+}
+
+@media all and (max-width: 500px) {
+  .hero {
+    font-size: large;
+  }  
+  html {
+    scrollbar-width: 0vw;
+  }
+  html::-webkit-scrollbar {
+    width: 0vw;
+  }
+}
+
+@media all and (max-width: 700px) {
+  .restoration::before {
+    background-size: cover;
+  }
 }
