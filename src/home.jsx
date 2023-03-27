@@ -110,7 +110,7 @@ export default function Home() {
 
             {/* Mobile Header */}
             <Box sx={{
-                height: "10vh", padding: "2em 0em 1.5em 1em", display: { xs: "flex", lg: "none" },
+                height: "6em", padding: "2em 0em 1.5em 1em", display: { xs: "flex", lg: "none" },
                 alignItems: "center", justifyContent: "flex-start", position: !show ? "absolute" : "fixed",
                 top: "0", left: "0", width: "100%", bgcolor: !show ? "" : "#291B4B", zIndex: !show ? "1" : "3",
                 transition: "all 0.5s"
