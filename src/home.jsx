@@ -58,7 +58,7 @@ export default function Home() {
         e.target.style.setProperty("--x", x + "px");
         e.target.style.setProperty("--y", y + "px");
     };
-    
+
     return (
         <div className="layout">
 
@@ -88,7 +88,7 @@ export default function Home() {
                             width: 0, height: 0, bgcolor: "#332459", transition: "width 0.4s, height 0.4s"
                         },
                         '&:hover::before': { width: "300px", height: "300px" }
-                    }} onMouseMove={handleHover} variant="contained" disableElevation href="https://www.theknowledgehouse.org/donate/"><p style={{ position: "relative", zIndex: 1 }}>Donate</p></Button>
+                    }} onMouseMove={handleStickyHover} variant="contained" disableElevation href="https://www.theknowledgehouse.org/donate/"><p style={{ position: "relative", zIndex: 1 }}>Donate</p></Button>
                 </Box>
             </Box>
 
@@ -124,14 +124,14 @@ export default function Home() {
                 <div className={`navMenu ${openMenu ? "open" : ""}`}>
                     <CSSTransition classNames="menu-primary" in={activeMenu === "main"} timeout={500} unmountOnExit>
                         <div className="menu">
-                            <div className="navItem">Home</div>
+                            <a href="/" className="navItem">Home</a>
                             <div onClick={() => setActiveMenu("secondaryA")} className="navItem">About <NavigateNextIcon style={{ transform: "translateY(3px)" }} /></div>
                             <div onClick={() => setActiveMenu("secondaryV")} className="navItem">Get Involved <NavigateNextIcon style={{ transform: "translateY(3px)" }} /></div>
                             <div onClick={() => setActiveMenu("secondaryP")} className="navItem">Programs <NavigateNextIcon style={{ transform: "translateY(3px)" }} /></div>
-                            <div className="navItem">Contact</div>
+                            <a href="https://www.theknowledgehouse.org/contact/" className="navItem">Contact</a>
                             <Button sx={{
                                 bgcolor: "#FFC20A", color: "#332459", fontWeight: "bold",
-                                textTransform: "none", padding: "1em", fontSize: "30px",
+                                textTransform: "none", padding: "1em", fontSize: "25px",
                                 borderRadius: "0", height: "2.5em", overflow: "hidden",
                                 '&:hover': { color: "white", bgcolor: "#FFC20A" },
                                 '&::before': {
@@ -140,7 +140,7 @@ export default function Home() {
                                     width: 0, height: 0, bgcolor: "#332459", transition: "width 0.4s, height 0.4s"
                                 },
                                 '&:hover::before': { width: "300px", height: "300px" }
-                            }} onMouseMove={handleStickyHover} variant="contained" disableElevation href="https://www.theknowledgehouse.org/donate/">
+                            }} onMouseMove={handleHover} variant="contained" disableElevation href="https://www.theknowledgehouse.org/donate/">
                                 <p style={{ position: "relative", zIndex: 1 }}>Donate</p>
                             </Button>
                         </div>
