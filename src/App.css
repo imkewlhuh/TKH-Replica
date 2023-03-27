@@ -86,6 +86,8 @@ body {
 
 .navBurger.open {
   position: fixed;
+  width: 2em;
+  height: 2em;
 }
 
 .burgerTop {
