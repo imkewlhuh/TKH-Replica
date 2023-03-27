@@ -13,7 +13,7 @@ export const testimonials = [
         quote: "TKH opened me up to a world that I didn't think was possible without going to college first. I've met people and made connections I could have never dreamed of, and I'm now in a better place than if I had just gone straight to college. It was a great way to learn what I wanted to do with my life without spending thousands of dollars on a degree first.",
         title: "Snap Lens Academy Scholar at Snap Inc."
     }
-]
+];
 
 export default function Testimonial(props) {
     return (
@@ -35,4 +35,4 @@ export default function Testimonial(props) {
             </Box>
         </>
     )
-}
+};

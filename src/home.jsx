@@ -49,7 +49,7 @@ export default function Home() {
 
         e.target.style.setProperty("--x", x + "px");
         e.target.style.setProperty("--y", y + "px");
-    }
+    };
 
     function handleStickyHover(e) {
         let x = e.clientX - e.target.offsetLeft;
@@ -57,8 +57,8 @@ export default function Home() {
 
         e.target.style.setProperty("--x", x + "px");
         e.target.style.setProperty("--y", y + "px");
-    }
-
+    };
+    
     return (
         <div className="layout">
 

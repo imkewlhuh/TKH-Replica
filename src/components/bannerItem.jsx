@@ -22,4 +22,4 @@ export default function BannerItem(props) {
             </Box>
         </Box>
     )
-}
+};

@@ -44,4 +44,4 @@ export default function NewsTiles(props) {
                 <p style={{fontWeight: "bold"}}>{props.title}</p>
             </Box>
     )
-}
+};
