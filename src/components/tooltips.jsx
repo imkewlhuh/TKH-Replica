@@ -26,9 +26,9 @@ export default function TooltipLinks(props) {
 
     return (
         <Box sx={{
-            bgcolor: "white", padding: "3em", display: "flex",
+            bgcolor: "white", padding: "2em", display: "flex",
             flexDirection: "column", gap: "1em", fontSize: "16px",
-            width: "270px"
+            width: "270px", transform: "scale(1.1)"
             
         }}>
             {links.map((link, i) => {

@@ -53,7 +53,7 @@ export function Volunteer() {
                 return (
                     <Box sx={{ display: "flex", fontSize: "16px", width: "19ch" }} key={i}>
                         <NavigateNextIcon sx={{ height: "16px", transform: "translate(-5px, 3px)" }} /> 
-                        <a className="footerLinks" href={volunteer.name}>{volunteer.name}</a>
+                        <a className="footerLinks" href={volunteer.link}>{volunteer.name}</a>
                     </Box>
                 )
             })}
@@ -73,7 +73,7 @@ export function Programs() {
                 return (
                     <Box sx={{ display: "flex", fontSize: "16px", width: "19ch" }} key={i}>
                         <NavigateNextIcon sx={{ height: "16px", transform: "translate(-5px, 3px)" }} /> 
-                        <a className="footerLinks" href={program.name}>{program.name}</a>
+                        <a className="footerLinks" href={program.link}>{program.name}</a>
                     </Box>
                 )
             })}
