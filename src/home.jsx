@@ -2,6 +2,8 @@ import {
     Box, Container, Button, Grid,
     Tooltip
 } from "@mui/material";
+import NavigateNextIcon from '@mui/icons-material/NavigateNext';
+import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 import Carousel from "nuka-carousel/lib/carousel.js";
 import BannerItem, { bannerItems } from "./components/bannerItem.jsx";
 import TooltipLinks from "./components/tooltips.jsx";
@@ -10,27 +12,17 @@ import { aboutLinks, volunteerLinks, programsLinks } from "./components/tooltips
 import NewsTiles, { news } from "./components/news.jsx";
 import { TKH, About, Volunteer, Programs, Contact } from "./components/footer.jsx";
 import { useState, useEffect } from "react";
+import { CSSTransition } from "react-transition-group";
 import Aos from "aos";
 import 'aos/dist/aos.css';
 
 Aos.init();
 
-const closedNav = {
-    height: "10vh", padding: "2em 0em 1.5em 1em", display: { xs: "flex", lg: "none" },
-    alignItems: "center", justifyContent: "flex-start", position: "absolute",
-    top: "0", left: "0", width: "100%",
-};
-
-const openNav = {
-    bgcolor: "white", display: "flex", flexDirection: "column",
-    position: "absolute", top: "0", left: "0",
-    width: "100vw", height: "100dvh", zIndex: "5"
-};
-
 export default function Home() {
     const [show, setShow] = useState(false);
     const [scroll, setScroll] = useState(0);
-    const [navShow, setNavShow] = useState(false);
+    const [openMenu, setOpenMenu] = useState(false);
+    const [activeMenu, setActiveMenu] = useState('main');
 
     useEffect(() => {
         function showNav(e) {
@@ -73,7 +65,9 @@ export default function Home() {
             {/* header */}
             <Box sx={{
                 height: "14vh", padding: "2em 0em 1.5em 0em", display: { xs: "none", lg: "flex" },
-                alignItems: "center", justifyContent: "space-around", gap: "3em"
+                alignItems: "center", justifyContent: "space-around", gap: "3em", position: !show ? "" : "fixed",
+                top: "0", left: "0", width: "100%", bgcolor: !show ? "" : "#291B4B", zIndex: !show ? "1" : "3",
+                transition: "all 0.5s"
             }} >
                 <a href="/"><img className="headerTitle" src="/images/title.png" /></a>
                 <Box sx={{ display: "flex", alignItems: "center" }} >
@@ -99,56 +93,11 @@ export default function Home() {
             </Box>
 
 
-            {/* Scroll Header */}
-            <Box sx={{
-                height: "15vh", padding: "2em 0em 2em 0em", display: { xs: "none", lg: "flex" },
-                alignItems: "center", justifyContent: "space-around", gap: "3em",
-                position: "fixed", top: "0", left: "0", bgcolor: "#291B4B",
-                width: "100%", zIndex: show ? "2" : "-1", opacity: show ? "1" : "0", transition: "opacity 0.5s",
-            }} >
-                <a href="/"><img className="headerTitle" src="/images/title.png" /></a>
-                <Box sx={{ display: show ? "flex" : "none", alignItems: "center" }} >
-                    <div className="navLinks">
-                        <Tooltip placement="bottom-start" TransitionProps={{ style: { transitionDuration: 400 } }} title={<TooltipLinks links={aboutLinks} />}  >
-                            <a href="https://www.theknowledgehouse.org/our_story/">
-                                About
-                            </a>
-                        </Tooltip>
-                        <Tooltip placement="bottom-end" TransitionProps={{ style: { transitionDuration: 400 } }} title={<TooltipLinks links={volunteerLinks} />} >
-                            <a href="https://www.theknowledgehouse.org/volunteer/">
-                                Get Involved
-                            </a>
-                        </Tooltip>
-                        <Tooltip placement="bottom-end" TransitionProps={{ style: { transitionDuration: 400 } }} title={<TooltipLinks links={programsLinks} />} >
-                            <a href="https://www.theknowledgehouse.org/apply/">
-                                Programs
-                            </a>
-                        </Tooltip>
-                        <a href="https://www.theknowledgehouse.org/contact/">
-                            Contact
-                        </a>
-                    </div>
-                    <Button sx={{
-                        bgcolor: "#FFC20A", color: "#332459", fontWeight: "bold",
-                        textTransform: "none", paddingX: "2.5em", fontSize: "16px",
-                        borderRadius: "0", height: "30px", overflow: "hidden",
-                        '&:hover': { color: "white", bgcolor: "#FFC20A" },
-                        '&::before': {
-                            content: "''", position: "absolute", borderRadius: "50%",
-                            top: "var(--y)", left: "var(--x)", transform: "translate(-50%, -50%)",
-                            width: 0, height: 0, bgcolor: "#332459", transition: "width 0.4s, height 0.4s"
-                        },
-                        '&:hover::before': { width: "300px", height: "300px" }
-                    }} onMouseMove={handleStickyHover} variant="contained" disableElevation href="https://www.theknowledgehouse.org/donate/"><p style={{ position: "relative", zIndex: 1 }}>Donate</p></Button>
-                </Box>
-            </Box>
-
-
             {/* sub-header */}
             <Box sx={{
                 bgcolor: "#FFB570", color: "#332459", display: { xs: "none", lg: "flex" },
                 alignItems: "center", justifyContent: "center", padding: "0.4em 0em 0.4em 3em",
-                fontSize: "20px"
+                fontSize: "20px", marginTop: !show ? "" : "14vh"
             }} >
                 <p>Get updates as our movement grows!</p>
                 <Button sx={{
@@ -160,34 +109,72 @@ export default function Home() {
 
 
             {/* Mobile Header */}
-            <Box sx={navShow ? {...openNav} : {...closedNav}} >
-                <a href="/"><img className="headerTitle" src="/images/title.png" /></a>
-                <Box sx={{
-                    display: "flex", flexDirection: "column", alignItems: "flex-end",
-                    gap: "0.5em", zIndex: "10", position: "absolute", top: "2em", right: "1.5em"
-                }} onClick={() => setNavShow(!navShow)} >
-                    <Box sx={{bgcolor: navShow ? "black" : "white", height: "2px", width: "2em"}} ></Box>
-                    <Box sx={{bgcolor: navShow ? "black" : "white", height: "2px", width: "1em"}} ></Box>
-                </Box>
-            </Box>
-
-
-            {/* Mobile Scroll Header */}
-            <Box sx={navShow ? {...openNav} : {
+            <Box sx={{
                 height: "10vh", padding: "2em 0em 1.5em 1em", display: { xs: "flex", lg: "none" },
-                alignItems: "center", justifyContent: "flex-start", position: "fixed",
-                width: "100%", bgcolor: "#291B4B", zIndex: show ? "2" : "-1", opacity: show ? "1" : "0", transition: "opacity 0.5s",
-
-            }} >
-
+                alignItems: "center", justifyContent: "flex-start", position: !show ? "absolute" : "fixed",
+                top: "0", left: "0", width: "100%", bgcolor: !show ? "" : "#291B4B", zIndex: !show ? "1" : "3",
+                transition: "all 0.5s"
+            }}>
                 <a href="/"><img className="headerTitle" src="/images/title.png" /></a>
-                <Box sx={{
-                    display: "flex", flexDirection: "column", alignItems: "flex-end",
-                    gap: "0.5em", zIndex: "10", position: "absolute", top: "2em", right: "1.5em"
-                }} onClick={() => setNavShow(!navShow)} >
-                    <Box sx={{bgcolor: navShow ? "black" : "white", height: "2px", width: "2em"}} ></Box>
-                    <Box sx={{bgcolor: navShow ? "black" : "white", height: "2px", width: "1em"}} ></Box>
-                </Box>
+                <div onClick={() => setOpenMenu(!openMenu)} className={`navBurger ${openMenu ? "open" : ""}`}>
+                    <div className={`burgerTop ${openMenu ? "open" : ""}`}></div>
+                    <div className={`burgerBottom ${openMenu ? "open" : ""}`}></div>
+                </div>
+
+                <div className={`navMenu ${openMenu ? "open" : ""}`}>
+                    <CSSTransition classNames="menu-primary" in={activeMenu === "main"} timeout={500} unmountOnExit>
+                        <div className="menu">
+                            <div className="navItem">Home</div>
+                            <div onClick={() => setActiveMenu("secondaryA")} className="navItem">About <NavigateNextIcon style={{ transform: "translateY(3px)" }} /></div>
+                            <div onClick={() => setActiveMenu("secondaryV")} className="navItem">Get Involved <NavigateNextIcon style={{ transform: "translateY(3px)" }} /></div>
+                            <div onClick={() => setActiveMenu("secondaryP")} className="navItem">Programs <NavigateNextIcon style={{ transform: "translateY(3px)" }} /></div>
+                            <div className="navItem">Contact</div>
+                            <Button sx={{
+                                bgcolor: "#FFC20A", color: "#332459", fontWeight: "bold",
+                                textTransform: "none", padding: "1em", fontSize: "30px",
+                                borderRadius: "0", height: "2.5em", overflow: "hidden",
+                                '&:hover': { color: "white", bgcolor: "#FFC20A" },
+                                '&::before': {
+                                    content: "''", position: "absolute", borderRadius: "50%",
+                                    top: "var(--y)", left: "var(--x)", transform: "translate(-50%, -50%)",
+                                    width: 0, height: 0, bgcolor: "#332459", transition: "width 0.4s, height 0.4s"
+                                },
+                                '&:hover::before': { width: "300px", height: "300px" }
+                            }} onMouseMove={handleStickyHover} variant="contained" disableElevation href="https://www.theknowledgehouse.org/donate/">
+                                <p style={{ position: "relative", zIndex: 1 }}>Donate</p>
+                            </Button>
+                        </div>
+                    </CSSTransition>
+                    <CSSTransition classNames="menu-secondary" in={activeMenu === "secondaryA" || activeMenu === "secondaryV" || activeMenu === "secondaryP"} timeout={500} unmountOnExit>
+                        <div className="menu">
+                            <div onClick={() => setActiveMenu("main")} className="navItem"><NavigateBeforeIcon style={{ transform: "translateY(3px)" }} />Back</div>
+                            {activeMenu === "secondaryA" ?
+                                aboutLinks.map((link, i) => {
+                                    return (
+                                        <a href={link.link} key={i} className="navItem">{link.name}</a>
+                                    )
+                                })
+                                : ""
+                            }
+                            {activeMenu === "secondaryV" ?
+                                volunteerLinks.map((link, i) => {
+                                    return (
+                                        <a href={link.link} key={i} className="navItem">{link.name}</a>
+                                    )
+                                })
+                                : ""
+                            }
+                            {activeMenu === "secondaryP" ?
+                                programsLinks.map((link, i) => {
+                                    return (
+                                        <a href={link.link} key={i} className="navItem">{link.name}</a>
+                                    )
+                                })
+                                : ""
+                            }
+                        </div>
+                    </CSSTransition>
+                </div>
             </Box>
 
 
@@ -201,6 +188,7 @@ export default function Home() {
                     bgcolor: "#FFC20A", color: "#332459", fontWeight: "bold",
                     textTransform: "none", paddingX: "3em", fontSize: "18px",
                     borderRadius: "0", height: "60px", overflow: "hidden",
+                    display: openMenu ? "none" : "",
                     '&:hover': { color: "white", bgcolor: "#FFC20A" },
                     '&::before': {
                         content: "''", position: "absolute", borderRadius: "50%",
@@ -231,7 +219,7 @@ export default function Home() {
             {/* Our Mission */}
             <Box sx={{ bgcolor: "white", display: "flex", justifyContent: "center", fontFamily: "sans-serif", textAlign: "center" }} >
                 <Box data-aos="fade" data-aos-duration="700" sx={{
-                    bgcolor: "#FFC20A", width: {xs: "100%", md: "80%"}, display: "flex",
+                    bgcolor: "#FFC20A", width: { xs: "100%", md: "80%" }, display: "flex",
                     flexDirection: "column", alignItems: "center", justifyContent: "space-around",
                     padding: "3em", gap: "2em"
                 }}>

@@ -72,6 +72,148 @@ body {
   transform: translateX(10px);
 }
 
+.navBurger {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-between;
+  position: absolute;
+  top: 2.5em;
+  right: 2em;
+  height: 1em;
+  z-index: 20;
+}
+
+.navBurger.open {
+  position: fixed;
+}
+
+.burgerTop {
+  background-color: white;
+  width: 2em;
+  height: 2px;
+  transition: all 0.3s;
+}
+
+.burgerTop.open {
+  transform: rotate(45deg);
+  position: absolute;
+  top: 0.5em;
+  background-color: black;
+}
+
+.burgerBottom {
+  background-color: white;
+  width: 1em;
+  height: 2px;
+  transition: all 0.3s;
+}
+
+.burgerBottom.open {
+  width: 2em;
+  transform: rotate(-45deg);
+  position: absolute;
+  top: 0.5em;
+  background-color: black;
+}
+
+.navMenu {
+  background-color: white;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+  font-family: sans-serif;
+  font-weight: bold;
+  padding: 1em;
+  opacity: 0;
+  transition: all 0.5s;
+}
+
+.navMenu.open {
+  opacity: 1;
+  z-index: 15;
+}
+
+.navMenu.open::before {
+  content: '';
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-image: url("/images/logo.png");
+  background-position-x: center;
+  background-position-y: 45%;
+  background-size: 10em;
+  background-repeat: no-repeat;
+  z-index: -1;
+  opacity: 0.1;
+}
+
+.navItem {
+  text-decoration: none;
+  color: black;
+  transition: all 0.3s;
+}
+
+.navItem:hover {
+  color: #FFC20A;
+}
+
+.menu {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 1em;
+}
+
+.menu-primary-enter {
+  position: absolute;
+  transform: translateX(-130%);
+}
+
+.menu-primary-enter-active {
+  transform: translateX(0%);
+  transition: all 0.5s;
+}
+
+.menu-primary-exit {
+  position: absolute;
+}
+
+.menu-primary-exit-active {
+  transform: translateX(-130%);
+  transition: all 0.5s;
+}
+
+.menu-secondary-enter {
+  position: absolute;
+  transform: translateX(130%);
+}
+
+.menu-secondary-enter-active {
+  transform: translateX(0%);
+  transition: all 0.5s;
+}
+
+.menu-secondary-exit {
+  position: absolute;
+}
+
+.menu-secondary-exit-active {
+  transform: translateX(130%);
+  transition: all 0.5s;
+}
+
 .hero {
   background-image: url("/images/hero.png");
   background-position: center;
