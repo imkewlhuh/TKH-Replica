@@ -62,6 +62,12 @@ export default function Home() {
     return (
         <div className="layout">
 
+            {/* Disclaimer */}
+            <Box sx={{ display: { xs: "none", lg: "block" }, color: { xs: "black", lg: "white" }, textAlign: "center", bgcolor: { xs: "", lg: "#291B4B" }, padding: "0.5em", fontFamily: "sans-serif" }}>
+                <h2>THIS IS A COPY OF THE KNOWLEDGE HOUSE HOME PAGE MADE BY A STUDENT. <a className="disclaimer" href="https://www.theknowledgehouse.org/">OFFICIAL SITE</a></h2>
+            </Box>
+
+
             {/* header */}
             <Box sx={{
                 height: "14vh", padding: "2em 0em 1.5em 0em", display: { xs: "none", lg: "flex" },
@@ -122,6 +128,9 @@ export default function Home() {
                 </div>
 
                 <div className={`navMenu ${openMenu ? "open" : ""}`}>
+                    <Box sx={{ position: "absolute", top: "0", left: "0", width: "90%", color: { xs: "black", lg: "white" }, textAlign: "center", padding: "1em", fontFamily: "sans-serif" }}>
+                        <h5>THIS IS A COPY OF THE KNOWLEDGE HOUSE HOME PAGE MADE BY A STUDENT. <a className="disclaimer" href="https://www.theknowledgehouse.org/">OFFICIAL SITE</a></h5>
+                    </Box>
                     <CSSTransition classNames="menu-primary" in={activeMenu === "main"} timeout={500} unmountOnExit>
                         <div className="menu">
                             <a href="/" className="navItem">Home</a>

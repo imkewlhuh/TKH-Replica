@@ -25,6 +25,14 @@ body {
   background-color: #332459;
 }
 
+.disclaimer {
+  color: #FFC20A;
+}
+
+.disclaimer:hover {
+  color: #ffd454;
+}
+
 .headerTitle {
   max-height: 25px;
 }
